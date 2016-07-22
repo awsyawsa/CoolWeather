@@ -1,4 +1,6 @@
-package com.example.wheather;
+package com.example.weather;
+
+import com.example.wheather.R;
 
 import android.os.Bundle;
 import android.app.Activity;
