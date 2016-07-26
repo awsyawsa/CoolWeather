@@ -47,10 +47,11 @@ public class Utility {
 	public synchronized static boolean handleCountyResponse(
 			CoolWeatherDB coolWeatherDB, String response,int cityId) {
 		if (!TextUtils.isEmpty(response)) {
-			String[] allProvinces = response.split(",");
-			if (allProvinces != null && allProvinces.length > 0) {
-				for (String p : allProvinces) {
-					String[] array = p.split("\\|");
+			String[] allcounty = response.split(",");
+			if (allcounty != null && allcounty.length > 0) {
+				for (String countystr : allcounty) {
+					System.out.println(response+"cityid"+cityId);
+					String[] array = countystr.split("\\|");
 					County county = new County();
 					county.setCountyCode(array[0]);
 					county.setCountyName(array[1]);
@@ -63,4 +64,5 @@ public class Utility {
 		return false;
 
 	}
+	
 }

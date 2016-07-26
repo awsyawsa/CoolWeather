@@ -16,7 +16,7 @@ public class HttpUtil {
 	}
 
 	public static void sendHttpRequest(final String address,
-			final HttpCallbackListener listener) {
+			final HttpCallbackListener httpCallbackListener) {
 		new Thread(new Runnable() {
 
 			public void run() {
@@ -35,12 +35,12 @@ public class HttpUtil {
 					while ((line = reader.readLine()) != null) {
 						response.append(line);
 					}
-					if (listener != null) {
-						listener.onFinish(response.toString());
+					if (httpCallbackListener != null) {
+						httpCallbackListener.onFinish(response.toString());
 					}
 				} catch (Exception e) {
-					if (listener != null) {
-						listener.onError(e);
+					if (httpCallbackListener != null) {
+						httpCallbackListener.onError(e);
 					}
 				} finally {
 					if (connection != null) {

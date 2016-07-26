@@ -6,6 +6,7 @@ import java.util.List;
 import model.City;
 import model.County;
 import model.Province;
+import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -40,7 +41,7 @@ public class CoolWeatherDB {
 		}
 	}
 
-	public List<Province> loadProvince() {
+	public List<Province> loadProvinces() {
 		List<Province> list = new ArrayList<Province>();
 		Cursor cursor = db
 				.query("Province", null, null, null, null, null, null);
@@ -68,9 +69,10 @@ public class CoolWeatherDB {
 		}
 	}
 
-	public List<City> loadCity() {
+	public List<City> loadCities(int provinceId) {
 		List<City> list = new ArrayList<City>();
-		Cursor cursor = db.query("city", null, null, null, null, null, null);
+		Cursor cursor = db.query("city", null, "province_id=?",
+				new String[] { String.valueOf(provinceId) }, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				City city = new City();
@@ -93,14 +95,14 @@ public class CoolWeatherDB {
 			values.put("county_name", county.getCountyName());
 			values.put("county_code", county.getCountyCode());
 			values.put("city_id", county.getCityId());
-			db.insert("Province", null, values);
+			db.insert("County", null, values);
 		}
 	}
 
-	public List<County> loadCounty() {
+	public List<County> loadCounty(int cityId) {
 		List<County> list = new ArrayList<County>();
-		Cursor cursor = db
-				.query("Province", null, null, null, null, null, null);
+		Cursor cursor = db.query("County", null, "city_id=?",
+				new String[] { String.valueOf(cityId) }, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				County county = new County();
@@ -109,8 +111,7 @@ public class CoolWeatherDB {
 						.getColumnIndex("county_code")));
 				county.setCountyName(cursor.getString(cursor
 						.getColumnIndex("county_name")));
-				county.setCountyName(cursor.getString(cursor
-						.getColumnIndex("city_id")));
+				county.setCityId(cursor.getInt(cursor.getColumnIndex("city_id")));
 				list.add(county);
 			} while (cursor.moveToNext());
 		}
