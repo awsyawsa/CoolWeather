@@ -1,10 +1,13 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import android.R.integer;
 
 public class HttpUtil {
 	public interface HttpCallbackListener {
@@ -19,6 +22,8 @@ public class HttpUtil {
 			final HttpCallbackListener httpCallbackListener) {
 		new Thread(new Runnable() {
 
+			private BufferedReader in;
+
 			public void run() {
 				HttpURLConnection connection = null;
 				try {
@@ -27,11 +32,12 @@ public class HttpUtil {
 					connection.setRequestMethod("GET");
 					connection.setConnectTimeout(8000);
 					connection.setReadTimeout(8000);
+					connection.setRequestProperty( "Accept-Encoding", "utf-8" );
 					InputStream in = connection.getInputStream();
 					BufferedReader reader = new BufferedReader(
 							new InputStreamReader(in));
 					StringBuilder response = new StringBuilder();
-					String line;
+					String line = "";
 					while ((line = reader.readLine()) != null) {
 						response.append(line);
 					}
@@ -43,8 +49,10 @@ public class HttpUtil {
 						httpCallbackListener.onError(e);
 					}
 				} finally {
+					in = null;
 					if (connection != null) {
 						connection.disconnect();
+
 					}
 				}
 
