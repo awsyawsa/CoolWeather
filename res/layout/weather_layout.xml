@@ -9,6 +9,16 @@
         android:layout_height="50dp"
         android:background="#484E61" >
 
+        <Button
+            android:id="@+id/switch_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="选择城市"
+            android:textColor="#fff"
+            android:textSize="40sp" />
+
         <TextView
             android:id="@+id/city_name"
             android:layout_width="wrap_content"
@@ -16,6 +26,17 @@
             android:layout_centerInParent="true"
             android:textColor="#fff"
             android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/refresh_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="更新天气"
+            android:textColor="#fff"
+            android:textSize="40sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -60,11 +81,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/weather_info_layout"
+          
+            android:layout_centerHorizontal="true"
             android:orientation="horizontal" >
 
             <TextView
@@ -78,7 +98,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               
                 android:text="~"
                 android:textColor="#fff"
                 android:textSize="40sp" />
@@ -92,21 +111,5 @@
                 android:textSize="40sp" />
         </LinearLayout>
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/refresh_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="更新天气"
-        android:textColor="#fff"
-        android:textSize="40sp" />
-
-    <Button
-        android:id="@+id/switch_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选择城市"
-        android:textColor="#fff"
-        android:textSize="40sp" />
 
 </LinearLayout>
