@@ -1,5 +1,6 @@
 package com.example.weather;
 
+import service.AutoUpdateService;
 import util.HttpUtil;
 import util.HttpUtil.HttpCallbackListener;
 import util.Utility;
@@ -72,6 +73,8 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		currentDaTextView.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameTextView.setVisibility(View.VISIBLE);
+		Intent intent=new Intent(this, AutoUpdateService.class);
+		startService(intent);
 	}
 
 	private void queryWeatherCode(String countyCode) {

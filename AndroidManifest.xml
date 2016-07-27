@@ -40,6 +40,12 @@
             android:name="com.example.weather.WeatherActivity"
             android:label="@string/app_name" >
         </activity>
+
+        <service android:name="service.AutoUpdateService" >
+        </service>
+
+        <receiver android:name="service.AutoUpdateReceiver" >
+        </receiver>
     </application>
 
 </manifest>
